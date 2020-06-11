@@ -19,8 +19,7 @@ public class AgentController {
 
     //http://localhost:2019/agents/agent/9
     @GetMapping(value = "/agent/{id}", produces = {"application/json"})
-    public ResponseEntity<?> findAgentById(@PathVariable long id)
-    {
+    public ResponseEntity<?> findAgentById(@PathVariable long id) {
         Agents a = agentService.findAgentByID(id);
         return new ResponseEntity<>(a, HttpStatus.OK);
     }

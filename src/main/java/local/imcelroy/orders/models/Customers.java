@@ -8,8 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "customers")
-public class Customers
-{
+public class Customers {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long custcode;
@@ -32,8 +31,8 @@ public class Customers
     private Agents agent;
 
     @OneToMany(mappedBy = "customer",
-    cascade = CascadeType.ALL,
-    orphanRemoval = true)
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @JsonIgnoreProperties("customer")
     private List<Orders> orders = new ArrayList<>();
 

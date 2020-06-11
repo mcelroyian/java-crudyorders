@@ -8,8 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-public class Orders
-{
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ordnum;
@@ -26,20 +25,19 @@ public class Orders
 
     @ManyToMany()
     @JoinTable(name = "orderspayments",
-    joinColumns = @JoinColumn(name = "ordnum"),
-    inverseJoinColumns = @JoinColumn(name = "paymentid"))
+            joinColumns = @JoinColumn(name = "ordnum"),
+            inverseJoinColumns = @JoinColumn(name = "paymentid"))
     @JsonIgnoreProperties("orders")
     private List<Payments> payments = new ArrayList<>();
 
     public Orders() {
     }
 
-    public Orders(double ordamount, double advanceamount, String orderdescription, Customers customer, List<Payments> payments) {
+    public Orders(double ordamount, double advanceamount, String orderdescription, Customers customer) {
         this.ordamount = ordamount;
         this.advanceamount = advanceamount;
         this.orderdescription = orderdescription;
         this.customer = customer;
-        this.payments = payments;
     }
 
     public long getOrdnum() {
@@ -88,6 +86,11 @@ public class Orders
 
     public void setPayments(List<Payments> payments) {
         this.payments = payments;
+    }
+
+    public void addPayment(Payments payment) {
+        payment.getOrders().add(this);
+        payments.add(payment);
     }
 
     @Override

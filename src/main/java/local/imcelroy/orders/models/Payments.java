@@ -8,8 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "payments")
-public class Payments
-{
+public class Payments {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long paymentid;

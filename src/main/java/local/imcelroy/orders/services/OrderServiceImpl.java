@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 
 @Service(value = "orderService")
-public class OrderServiceImpl implements  OrderService {
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderRepository orderrepo;
@@ -17,5 +17,15 @@ public class OrderServiceImpl implements  OrderService {
     public Orders findOrdersById(long id) {
         return orderrepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Order " + id + " Not Found"));
+    }
+
+    @Override
+    public void delete(long id) {
+
+    }
+
+    @Override
+    public Orders save(Orders order) {
+        return null;
     }
 }
